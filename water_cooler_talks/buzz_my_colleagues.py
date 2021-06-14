@@ -32,7 +32,7 @@ def buzz_colleagues(participants_count):
     buzz_flag = False # Line should be removed and variable's state should be stored in AWS
     if participants_count > 0:
         if buzz_flag is False:
-            # Add the code that integrates with Raspberry Pi to buzz colleagues here.
+            # <TBD >Add code to integrate with Raspberry Pi and buzz colleagues.
             print('Buzzing colleagues to chit-chat!')
             buzz_flag = True
     else:
