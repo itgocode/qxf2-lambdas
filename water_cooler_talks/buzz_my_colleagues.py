@@ -29,7 +29,7 @@ def buzz_colleagues(participants_count):
     """
     Buzz colleagues based on the status of buzz_flag, when the room has participants.
     """
-    buzz_flag = False # <TBD> Line should be removed and variable's state should be stored in AWS
+    buzz_flag = False # <TBD> Remove and variable's state should be stored in AWS
     if participants_count > 0:
         if buzz_flag is False:
             # <TBD> Add code to integrate with Raspberry Pi and buzz colleagues.
