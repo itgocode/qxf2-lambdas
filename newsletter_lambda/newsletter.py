@@ -19,7 +19,7 @@ def clean_message(message):
 
 
 
-def get_message_contents():
+def get_message_contents(event):
     "Retrieve the message contents from the SQS event"
     record = event.get('Records')[0]
     message = record.get('body')
