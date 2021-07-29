@@ -17,12 +17,6 @@ def clean_message(message):
 
     return message
 
-def get_is_pto(message):
-    "Check if the message is a PTO message"
-    response = requests.post(url=IS_PTO_URL,data={'message':message})
-    result_flag = response.json()['score'] == 1
-
-    return result_flag
 
 
 def get_message_contents():
@@ -38,16 +32,16 @@ def get_message_contents():
 def lambda_handler(event, context):
 
     "Lambda entry point"
-    message_contents = get_message_contents()
+    message_contents = get_message_contents(event)
     message = message_contents['msg']
     channel = message_contents['chat_id']
     user = message_contents['user_id']
     print(f'{message}, {user}, {channel}')
     is_pto_flag = False
-    if channel == os.environ.get('PTO_CHANNEL') and user != os.environ.get('Qxf2Bot_USER'):
+    if channel == os.environ.get('ETC_CHANNEL') and user != os.environ.get('Qxf2Bot_USER'):
         cleaned_message = clean_message(message)
         #is_pto_flag = get_is_pto(cleaned_message)
-        print(f'{is_pto_flag}')
+        print("Inside the Channel")
    
 
 
