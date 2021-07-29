@@ -15,7 +15,7 @@ jobs:
       uses: qxf2/py-lambda-action@v1.0.2
       with:
         lambda_directory: 'newsletter_lambda'
-        lambda_function_name: arn:aws:lambda:ap-south-1:285993504765:function:newsletter-lambda-dris
+        lambda_function_name: arn:aws:lambda:ap-south-1:285993504765:function:newsletterlambdadris
         lambda_layer_arn: 'arn:aws:lambda:ap-south-1:285993504765:layer:requests-boto'
         requirements_txt: 'newsletter_lambda/requirements.txt'
       env:
