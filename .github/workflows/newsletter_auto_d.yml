@@ -4,8 +4,8 @@ on:
     branches:
       - newsletter_lambda_drishya
     paths:
-      - 'newsletter_lambda/newsletter.py'
-      - 'newsletter_lambda/requirements.txt'
+      - 'newsletter_lambda/**'
+      - '.github/workflows/newsletter_auto_d.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
