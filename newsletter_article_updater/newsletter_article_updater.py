@@ -26,18 +26,12 @@ def get_message_contents(event):
 
     return message
 
-# This method is capable to parse multiple urls from single message (if single message contains multiple urls).
 def parse_urls_from_message(message):
     "parse urls from message"
-    urls = []
-    for i in message:
-        regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
-        url = re.findall(regex, i)
-        if url != []:
-            url = [x[0] for x in url]
-            urls.append(url[0])
+    regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
+    url = re.findall(regex, message)
 
-    return urls
+    return [x[0] for x in url]
 
 def write_message(message, channel):
     "Send a message to Skype Sender"
@@ -61,7 +55,7 @@ def lambda_handler(event, context):
             for url in urls:
                 dump_url = json.dumps(url)
                 #We need to modify post call as per auth design, may be we need to add new method for making call
-                response = requests.post(url = os.environ.get('API_ENDPOINT'), data = dump_url, auth = <auth_key>, header = {'Content-Type': 'application/json'})
+                response = requests.post(url = os.environ.get('API_ENDPOINT'), data = dump_url, auth = '<auth_key>', header = {'Content-Type': 'application/json'})
                 if response.status_code == 200:
                     print ('Url added to newsletter database')
                     #post message on Skype channel using skype sender for conformation
