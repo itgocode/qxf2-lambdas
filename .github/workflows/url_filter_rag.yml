@@ -6,6 +6,7 @@ on:
     paths:
       - 'wk12urlftr/**'
       - '.github/workflows/url_filter_rag.yml'
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
