@@ -1,0 +1,23 @@
+name: deploy-url-filter-lambda
+on:
+  push:
+    branches:
+      - wk12-urlfilter
+    paths:
+      - 'wk12urlftr/**'
+      - '.github/workflows/url_filter_rag.yml'
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy code to URL filter Lambda
+      uses: qxf2/py-lambda-action@v1.0.2
+      with:
+        lambda_directory: 'wk12-urlfilter'
+        lambda_function_name: 'arn:aws:lambda:ap-south-1:285993504765:function:urlfilterlambda'
+        lambda_layer_arn: 'arn:aws:lambda:ap-south-1:285993504765:layer:etc_url_filter_rag'
+        requirements_txt: 'wk12-urlfilter/requirements.txt'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.SKYPE_SENDER_REGION }}
