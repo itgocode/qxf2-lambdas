@@ -1,1 +1,0 @@
-channel_id = '19:***@thread.skype'
