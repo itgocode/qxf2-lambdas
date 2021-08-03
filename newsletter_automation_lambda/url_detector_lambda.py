@@ -9,13 +9,10 @@ import requests
 
 QUEUE_URL = 'https://sqs.ap-south-1.amazonaws.com/285993504765/skype-sender'
 
-from skpy import Skype
-import skype_config as sc
-import skype_credentials as cred
 import re
 
 def lambda_handler(event, context):
-    "Lambda entry point"
+    "Lambda entry point" #this should be Handler from AWS
     message_contents = get_message_contents(event)
     message = message_contents['msg']
     channel = message_contents['chat_id']
