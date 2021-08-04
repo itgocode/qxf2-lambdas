@@ -7,23 +7,16 @@ import os
 import boto3
 import requests
 import re
+from requests import Response
 
-
-#IS_PTO_URL = 'https://practice-testing-ai-ml.qxf2.com/is-pto'
-#QUEUE_URL = 'https://sqs.ap-south-1.amazonaws.com/285993504765/skype-sender'
-
-# create lambda client
-client = boto3.client('lambda',
-                        region_name= conf.region,
-                        aws_access_key_id=conf.aws_access_key_id,
-                        aws_secret_access_key=conf.aws_secret_access_key)
-
+#create lambda client
 def clean_message(message):
     "Clean up the message received"
     message = message.replace("'", '-')
     message = message.replace('"', '-')
 
     return message
+
 def URL_filter(msgs):
     URL_data = [] # list of lists
   
@@ -42,8 +35,13 @@ def get_message_contents(event):
 
     return message
 
-def post_newsletter_url(final_url):
-    print("hello")
+def post_newsletter_url(json_url):
+    URL = https://newsletter-generator.qxf2.com/articles
+    data = json.dumps(json_url)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    response = requests.post(URL, data=data, headers=headers )
+
+    return response
 
 def lambda_handler(event, context):
     "Lambda entry point"
@@ -58,7 +56,6 @@ def lambda_handler(event, context):
         final_url = URL_filter(cleaned_message)
         if final_url:
             response = post_newsletter_url(final_url)
-        else:
-            print("no url")
+            assert response.status_code == 200
     else:
         print("message not found in etc channel")
